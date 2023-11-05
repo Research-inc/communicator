@@ -3,8 +3,9 @@ import os
 COMM_NAME = "naocomm"
 def writeCommunicator(data):
 
-    # Create a named pipe
-    os.mkfifo(COMM_NAME)
+    if not os.path.exists(COMM_NAME):
+        # Create a named pipe
+        os.mkfifo(COMM_NAME)
 
     # In another process or script
     with open(COMM_NAME, "w") as pipe:
